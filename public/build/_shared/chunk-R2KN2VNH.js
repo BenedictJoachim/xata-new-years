@@ -1,9 +1,9 @@
 import {
-  createHotContext
-} from "/build/_shared/chunk-FMT3A3N2.js";
-import {
   require_react_dom
 } from "/build/_shared/chunk-U4FRFQSK.js";
+import {
+  createHotContext
+} from "/build/_shared/chunk-FMT3A3N2.js";
 import {
   require_react
 } from "/build/_shared/chunk-7M6SC7J5.js";
@@ -9694,6 +9694,7 @@ export {
   useRoutes,
   useNavigation,
   useRevalidator,
+  useLoaderData,
   useRouteError,
   useAsyncValue,
   useAsyncError,
@@ -9713,6 +9714,7 @@ export {
   useBeforeUnload,
   usePrompt,
   useViewTransitionState,
+  init_dist2 as init_dist,
   json3 as json,
   defer3 as defer,
   redirect3 as redirect,
@@ -9731,7 +9733,7 @@ export {
   Await2 as Await,
   Scripts,
   useMatches2 as useMatches,
-  useLoaderData2 as useLoaderData,
+  useLoaderData2,
   useRouteLoaderData2 as useRouteLoaderData,
   useActionData2 as useActionData,
   useFetcher2 as useFetcher,
@@ -10018,4 +10020,4 @@ react-router-dom/dist/index.js:
    * @license MIT
    *)
 */
-//# sourceMappingURL=/build/_shared/chunk-JBTRKQOS.js.map
+//# sourceMappingURL=/build/_shared/chunk-R2KN2VNH.js.map

@@ -46,7 +46,7 @@ import {
   useHref,
   useInRouterContext,
   useLinkClickHandler,
-  useLoaderData,
+  useLoaderData2 as useLoaderData,
   useLocation,
   useMatch,
   useMatches,
@@ -65,10 +65,10 @@ import {
   useSearchParams,
   useSubmit,
   useViewTransitionState
-} from "/build/_shared/chunk-JBTRKQOS.js";
+} from "/build/_shared/chunk-R2KN2VNH.js";
+import "/build/_shared/chunk-U4FRFQSK.js";
 import "/build/_shared/chunk-FMT3A3N2.js";
 import "/build/_shared/chunk-UWV35TSL.js";
-import "/build/_shared/chunk-U4FRFQSK.js";
 import "/build/_shared/chunk-7M6SC7J5.js";
 import "/build/_shared/chunk-PNG5AS42.js";
 export {
@@ -140,4 +140,4 @@ export {
   useSearchParams,
   useSubmit
 };
-//# sourceMappingURL=/build/_shared/esm-NYXJXXLM.js.map
+//# sourceMappingURL=/build/_shared/esm-K2C6NRW3.js.map

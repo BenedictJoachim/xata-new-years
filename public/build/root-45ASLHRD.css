@@ -332,4 +332,52 @@ video {
   --tw-contain-paint: ;
   --tw-contain-style: ;
 }
-/*# sourceMappingURL=/build/root-JJZQ7DNY.css.map */
+.mt-4 {
+  margin-top: 1rem;
+}
+.list-disc {
+  list-style-type: disc;
+}
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+.bg-\[\#F2CFF1\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 207 241 / var(--tw-bg-opacity));
+}
+.p-4 {
+  padding: 1rem;
+}
+.pl-6 {
+  padding-left: 1.5rem;
+}
+.font-sans {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+.font-bold {
+  font-weight: 700;
+}
+.text-blue-700 {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
+}
+.underline {
+  text-decoration-line: underline;
+}
+.visited\:text-purple-900:visited {
+  color: rgb(88 28 135);
+}
+/*# sourceMappingURL=/build/root-45ASLHRD.css.map */
