@@ -49,12 +49,29 @@ const NewResolution = () => {
                     className="grid grid-flow-col justify-start items-center text-gray-500"
                 >
                     <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" name="email" required className="border-2 rounded-md mr-8 border-gray-600 px-3 py-1" />
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        className="border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
+                     />
 
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" required className="border-2 rounded-md mr-8 border-gray-600 px-3 py-1" />
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        className="border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
+                     />
 
-                    <button type="submit" className="bg-blue-500 text-white py-1 px-3 rounded-md font-semibold">
+                    <button 
+                        type="submit"
+                        name='action'
+                        value='createUser'
+                        className="bg-blue-500 text-white py-1 px-3 rounded-md font-semibold"
+                    >
                         Create User
                     </button>
                 </Form>

@@ -18,29 +18,79 @@ export interface ResolutionProp {
 
   export const action = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData();
-  
-    // Handle user creation
-    const userEmail = formData.get('email');
-    const userPassword = formData.get('password');
-  
-    const userResult = await sql`
-      INSERT INTO users (email, password)
-      VALUES (${userEmail}, ${userPassword})
-      RETURNING id
-    `;
-  
-    const userId = (userResult as any).rows[0].id;
-  
-    // Handle resolution creation
-    const resolutionText = formData.get('resolution');
-    const year = formData.get('year');
-  
-    await sql`
-      INSERT INTO resolutions (resolution, iscomplete, user_id, year)
-      VALUES (${resolutionText}, false, ${userId}, ${year})
-    `;
-  
-    return json({ success: true });
+    const action = formData.get('action');   
+
+    
+  switch (action) {
+    case 'createUser':
+      return createUser(formData,);
+    case 'createResolution':{
+      return createResolution(formData);}
+    case 'toggleCompletion':
+      return toggleCompletion(formData);
+    case 'deleteResolution':
+      return deleteResolution(formData);
+    default:
+      throw new Error('Invalid action');
+  }
+};
+
+async function createUser(formData: FormData) {
+  const userEmail = formData.get('email');
+  const userPassword = formData.get('password');
+
+  const userResult =await sql`
+    INSERT INTO users (email, password)
+    VALUES (${userEmail}, ${userPassword})
+    RETURNING id
+  `;
+
+  const userId = (userResult as any).rows[0].id;
+
+  return json({ success: true, userId });
+}
+
+async function createResolution(formData: FormData) {
+  const resolutionText = formData.get('resolution');
+  const year = formData.get('year');
+  const userId = 1;
+  await sql`
+    INSERT INTO resolutions (resolution, iscomplete, user_id, year)
+    VALUES (${resolutionText}, false, ${userId}, ${year})
+  `;
+
+  return json({ success: true });
+}
+
+async function toggleCompletion(formData: FormData) {
+  const id = formData.get("id");
+
+  if (typeof id !== "string") {
+    return null;
+  }
+
+  const isComplete = !!formData.get("isComplete");
+  await sql`
+    UPDATE resolutions
+    SET isComplete = ${isComplete}
+    WHERE id = ${id};
+  `;
+
+  return json({ success: true });
+}
+
+async function deleteResolution(formData: FormData) {
+  const id = formData.get("id");
+
+  if (typeof id !== "string") {
+    return null;
+  }
+
+  await sql`
+    DELETE FROM resolutions WHERE id = ${id};
+  `;
+
+  return json({ success: true });
 };
 
 
@@ -60,6 +110,8 @@ export async function loader() {
     throw new Error(`${error}`);
   }
 }
+
+
 
 const ResolutionsPage = () => {
     const {items:resolutions} = useLoaderData<typeof loader>();

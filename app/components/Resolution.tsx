@@ -31,14 +31,20 @@ const Resolution = ({ resolution }: ResolutionListProps) => {
                         className="mr-2"
                     />
                     <input type="hidden" name="id" value={resolution.id} />
-                    <input type="hidden" name="action" value="complete" />
+                    <input type="hidden" name="action" value="toggleCompletion" />
                 </Form>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-                    Edit
-                </button>
-                <button className="bg-red-500 text-white px-4 py-2 rounded-md ml-2">
-                    Delete
-                </button>
+
+                <Form method='post'>
+                    <button
+                        type='submit'
+                        name='action'
+                        value='delete'
+                        className="bg-red-500 text-white px-4 py-2 rounded-md ml-2"
+                    >
+                        Delete
+                    </button>
+                    <input type="hidden" name="id" value={resolution.id} />
+                </Form>
             </div>
         </div>
     );
