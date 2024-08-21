@@ -55,7 +55,7 @@ async function createResolution(formData: FormData) {
   const year = formData.get('year');
   const userId = 1;
   await sql`
-    INSERT INTO resolutions (resolution, iscomplete, user_id, year)
+    INSERT INTO resolution (resolution, iscomplete, user_id, year)
     VALUES (${resolutionText}, false, ${userId}, ${year})
   `;
 
@@ -71,7 +71,7 @@ async function toggleCompletion(formData: FormData) {
 
   const isComplete = !!formData.get("isComplete");
   await sql`
-    UPDATE resolutions
+    UPDATE resolution
     SET isComplete = ${isComplete}
     WHERE id = ${id};
   `;
@@ -87,7 +87,7 @@ async function deleteResolution(formData: FormData) {
   }
 
   await sql`
-    DELETE FROM resolutions WHERE id = ${id};
+    DELETE FROM resolution WHERE id = ${id};
   `;
 
   return json({ success: true });
@@ -97,6 +97,8 @@ async function deleteResolution(formData: FormData) {
 export async function loader() {
     try {
       const rows = await sql(`SELECT * FROM resolution`);
+      const rowsNumb = rows.length;
+      console.log(rowsNumb)
       console.log(rows);
       const items: ResolutionProp[] = rows.map((record) => ({
         id: record.id,

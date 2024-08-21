@@ -26,6 +26,7 @@ const Resolution = ({ resolution }: ResolutionListProps) => {
                     <input
                         type="checkbox"
                         name='isComplete'
+                        id='isComplete'
                         checked={resolution.isComplete}
                         readOnly
                         className="mr-2"
@@ -38,7 +39,7 @@ const Resolution = ({ resolution }: ResolutionListProps) => {
                     <button
                         type='submit'
                         name='action'
-                        value='delete'
+                        value='deleteResolution'
                         className="bg-red-500 text-white px-4 py-2 rounded-md ml-2"
                     >
                         Delete

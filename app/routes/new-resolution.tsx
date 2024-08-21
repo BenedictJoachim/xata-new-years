@@ -113,7 +113,7 @@ const NewResolution = () => {
                     <button
                         type="submit"
                         name="action"
-                        value="add"
+                        value="createResolution"
                         className="bg-blue-500 text-white py-1 px-3 rounded-md font-semibold"
                     >
                         Add
