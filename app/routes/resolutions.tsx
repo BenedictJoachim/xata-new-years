@@ -81,9 +81,7 @@ const ResolutionsPage = () => {
                     ) : (
                         resolutions.map(resolution => {
                             return (
-                                <Resolution
-                                    resolution ={resolution}
-                                />
+                                <Resolution key={resolution.id}  resolution ={resolution}/>
                             )
                         })
                     )}
