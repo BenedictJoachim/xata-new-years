@@ -75,7 +75,7 @@ const ResolutionsPage = () => {
       <div className="grid grid-flow-row gap-y-10">
                 {/* <NewResolution /> */}
 
-                <div className="flex flex-col space-y-8">
+                <div className="grid grid-cols-[repeat(4,auto)] justify-start items-center gap-x-8 gap-y-4">
                     {resolutions.length === 0 ? (
                         <p className="text-gray-500 italic">{`You made no resolutions`}</p>
                     ) : (
