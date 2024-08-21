@@ -1,5 +1,5 @@
-import { ActionFunctionArgs, json } from '@remix-run/node';
-import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import { ActionFunctionArgs, json, LoaderFunctionArgs } from '@remix-run/node';
+import { Form, redirect, useActionData, useLoaderData } from "@remix-run/react";
 import { sql } from "lib/neon.server";
 
 interface LoaderData {
@@ -9,7 +9,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData();
   
     // Handle user creation
-    const userEmail = formData.get('email');
+    /*const userEmail = formData.get('email');
     const userPassword = formData.get('password');
   
     const userResult = await sql`
@@ -18,19 +18,23 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       RETURNING id
     `;
   
-    const userId = (userResult as any).rows[0].id;
+    const userId = (userResult as any).rows[0].id;*/
   
     // Handle resolution creation
     const resolutionText = formData.get('resolution');
     const year = formData.get('year');
   
     await sql`
-      INSERT INTO resolutions (resolution, isCompleted, user_id, year)
-      VALUES (${resolutionText}, false, ${userId}, ${year})
+      INSERT INTO resolution (resolution, iscomplete, user_id, year)
+      VALUES (${resolutionText}, false, 1, ${year})
     `;
   
-    return json({ success: true });
+    return redirect("/resolutions");
 };
+
+export const loader = async ({request}: LoaderFunctionArgs)=>{
+    return {year:2024};
+}
 
 const NewResolution = () => {
     const currentYear = new Date().getFullYear()
@@ -103,4 +107,4 @@ const NewResolution = () => {
     )
 }
 
-export { NewResolution };
+export default  NewResolution ;

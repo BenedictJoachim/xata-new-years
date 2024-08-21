@@ -1,6 +1,12 @@
-const Resolution = () => {
+import { ResolutionProp } from "~/routes/resolutions"
+
+interface ResolutionListProps {
+    resolution: ResolutionProp;
+  }
+  
+const Resolution = (resolution:ResolutionListProps) => {
     return(
-        <p>Resolution</p>
+        <p>Resolution {JSON.stringify(resolution)}</p>
     )
 }
 

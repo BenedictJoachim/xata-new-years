@@ -1,11 +1,10 @@
 import { ActionFunctionArgs } from "@remix-run/node";
 import { useLoaderData, json, Link } from "@remix-run/react";
 import { sql } from "lib/neon.server";
-import {NewResolution} from "~/components/NewResolution"
 import Resolution from "~/components/Resolution";
 
 
-interface Resolution {
+export interface ResolutionProp {
     id: number;
     resolution: string;
     isComplete: boolean;
@@ -14,7 +13,7 @@ interface Resolution {
   }
 
   interface LoaderData {
-    items: Resolution[];
+    items: ResolutionProp[];
   }
 
   export const action = async ({ request }: ActionFunctionArgs) => {
@@ -37,7 +36,7 @@ interface Resolution {
     const year = formData.get('year');
   
     await sql`
-      INSERT INTO resolutions (resolution, isCompleted, user_id, year)
+      INSERT INTO resolutions (resolution, iscomplete, user_id, year)
       VALUES (${resolutionText}, false, ${userId}, ${year})
     `;
   
@@ -49,25 +48,32 @@ export async function loader() {
     try {
       const rows = await sql(`SELECT * FROM resolution`);
       console.log(rows);
-      return rows;
+      const items: ResolutionProp[] = rows.map((record) => ({
+        id: record.id,
+        resolution: record.resolution,
+        isComplete: Boolean(record.isComplete), // Convert to boolean
+        year: record.year,
+        user_id: record.user_id,
+      }));
+      return {items};
   } catch (error) {
     throw new Error(`${error}`);
   }
 }
 
 const ResolutionsPage = () => {
-    const resolutions = useLoaderData<typeof loader>();
+    const {items:resolutions} = useLoaderData<typeof loader>();
   return (
     <div className="p-10">
       <div className="grid grid-flow-col justify-between mb-16">
-          <Link className="inline-block" to="/resolutions">
+          <Link className="inline-block" to="/new-resolution">
               <h1 className="text-3xl font-bold">
                 New Year's Resolutions
               </h1>          
           </Link>
       </div>
       <div className="grid grid-flow-row gap-y-10">
-                <NewResolution />
+                {/* <NewResolution /> */}
 
                 <div className="grid grid-cols-[repeat(4,auto)] justify-start items-center gap-x-8 gap-y-4">
                     {resolutions.length === 0 ? (
@@ -76,7 +82,7 @@ const ResolutionsPage = () => {
                         resolutions.map(resolution => {
                             return (
                                 <Resolution
-                                    key={resolution.id}
+                                    resolution ={resolution}
                                 />
                             )
                         })
