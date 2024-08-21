@@ -7,7 +7,7 @@ interface ResolutionListProps {
 
 const Resolution = ({ resolution }: ResolutionListProps) => {
     return (
-        <div className="flex flex-row items-center justify-between p-4 bg-white rounded-lg shadow-md">
+        <div className="flex flex-row items-center justify-between p-4 bg-gray-800 rounded-lg shadow-md">
             <div className="flex justify-center items-center space-x-2">
                 <p className="text-gray-500">{resolution.year}</p>
                 <h2 className="text-lg text-gray-500 font-semibold">{resolution.resolution}</h2>
