@@ -51,6 +51,14 @@ export default function Index() {
             Resolutions
           </Link>
         </li>
+        <li>
+          <Link
+            className="text-blue-700 underline visited:text-purple-900"
+            to="signup"
+          >
+            Sign Up
+          </Link>
+        </li>
       </ul>
     </div>
   );
