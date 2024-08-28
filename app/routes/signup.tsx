@@ -10,6 +10,8 @@ export const action = async({request}: ActionFunctionArgs) => {
     const email = form.get('email');
     const password = form.get('password')?.toString();
 
+    console.log(email, password);
+    
     // Validate email and password
     if (!email || !password) {
         return new Response("Email and password are required.", { status: 400 });
@@ -38,7 +40,7 @@ export const action = async({request}: ActionFunctionArgs) => {
     successRedirect: "/resolutions",
     failureRedirect: "/login",
     context: {formData: form},
-})
+    })
 }
 
 const SignUpPage = () => {

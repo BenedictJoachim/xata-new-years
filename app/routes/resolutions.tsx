@@ -97,6 +97,9 @@ async function deleteResolution(formData: FormData) {
 export async function loader() {
     try {
       const rows = await sql(`SELECT * FROM resolution`);
+      const user = await sql(`SELECT * FROM users`);
+      console.log(user);
+      
       const rowsNumb = rows.length;
       console.log(rowsNumb)
       console.log(rows);
