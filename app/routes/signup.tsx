@@ -1,4 +1,4 @@
-import { ActionFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, json } from "@remix-run/node";
 import { Form, Link } from "@remix-run/react";
 import bcrypt from 'bcryptjs';
 import { sql } from "lib/neon.server";
@@ -14,7 +14,7 @@ export const action = async({request}: ActionFunctionArgs) => {
     
     // Validate email and password
     if (!email || !password) {
-        return new Response("Email and password are required.", { status: 400 });
+        return json("Email and password are required.", { status: 400 });
     }
 
     // Check if email already exists
@@ -23,14 +23,14 @@ export const action = async({request}: ActionFunctionArgs) => {
     `;
 
     if (existingUser.length > 0) {
-        return new Response("Email already exists.", { status: 400 });
+        return json("Email already exists.", { status: 400 });
     }
 
     // Hashed and salted password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user =await sql`
+    const [user] =await sql`
     INSERT INTO users (email, password)
     VALUES (${email}, ${hashedPassword})
     RETURNING id
@@ -39,7 +39,7 @@ export const action = async({request}: ActionFunctionArgs) => {
   return await authenticator.authenticate("form", request, {
     successRedirect: "/resolutions",
     failureRedirect: "/login",
-    context: {formData: form},
+    context: {id: user.id},
     })
 }
 
