@@ -36,9 +36,9 @@ export const action = async({request}: ActionFunctionArgs) => {
     RETURNING id
   `;
     // Clone the request object
-    const clonedRequest = new Request(request.url, request);
+    //const clonedRequest = new Request(request.url, request);
 
-  return await authenticator.authenticate("form", clonedRequest, {
+  return await authenticator.authenticate("form", request, {
     successRedirect: "/resolutions",
     failureRedirect: "/login",
     context: {id: user.id},
