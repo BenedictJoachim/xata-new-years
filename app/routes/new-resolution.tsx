@@ -1,11 +1,15 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs } from '@remix-run/node';
 import { Form, redirect, useActionData, useLoaderData } from "@remix-run/react";
 import { sql } from "lib/neon.server";
+import { authenticator } from 'utils/auth.server';
 
 interface LoaderData {
     year: number;
 }
 export const action = async ({ request }: ActionFunctionArgs) => {
+    let loggedInUser = await authenticator.isAuthenticated(request, {
+        failureRedirect: "/login",
+      });
     const formData = await request.formData();
   
     // Handle user creation
@@ -26,7 +30,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   
     await sql`
       INSERT INTO resolution (resolution, iscomplete, user_id, year)
-      VALUES (${resolutionText}, false, 1, ${year})
+      VALUES (${resolutionText}, false, ${loggedInUser.id}, ${year})
     `;
   
     return redirect("/resolutions");

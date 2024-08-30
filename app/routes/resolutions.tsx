@@ -1,6 +1,7 @@
 import { ActionFunctionArgs } from "@remix-run/node";
 import { useLoaderData, json, Link } from "@remix-run/react";
 import { sql } from "lib/neon.server";
+import { authenticator } from "utils/auth.server";
 import Resolution from "~/components/Resolution";
 
 
@@ -94,15 +95,19 @@ async function deleteResolution(formData: FormData) {
 };
 
 
-export async function loader() {
+export async function loader({request}: ActionFunctionArgs) {
+  let loggedInUser = await authenticator.isAuthenticated(request, {
+    failureRedirect: "/login",
+  });
+  console.log({loggedInUser})
     try {
-      const rows = await sql(`SELECT * FROM resolution`);
+      const rows = await sql(`SELECT * FROM resolution WHERE user_id = ${loggedInUser.id}`);
       const user = await sql(`SELECT * FROM users`);
-      console.log(user);
+      console.log({user});//TODO: Make a users route to list all users,
       
       const rowsNumb = rows.length;
-      console.log(rowsNumb)
-      console.log(rows);
+      console.log({rowsNumb})
+      console.log({rows});
       const items: ResolutionProp[] = rows.map((record) => ({
         id: record.id,
         resolution: record.resolution,
