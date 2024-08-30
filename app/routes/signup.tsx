@@ -6,7 +6,7 @@ import { authenticator } from "utils/auth.server";
 
 export const action = async({request}: ActionFunctionArgs) => {
     // Capturing sgnup credentials
-    const form = await request.formData();
+    const form = await request.clone().formData();
     const email = form.get('email');
     const password = form.get('password')?.toString();
 
