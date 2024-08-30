@@ -29,14 +29,14 @@ const formStrategy = new FormStrategy<User>(async ({ form }) => {
     // If no user is found, throw an authorization error
     if (!user) {
         console.log("Wrong email");
-        throw new AuthorizationError("Invalid email or password");
+        throw new AuthorizationError();
     }
 
     // Compare the provided password with the stored hashed password
     const passwordsMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordsMatch) {
-        throw new AuthorizationError("Invalid email or password");
+        throw new AuthorizationError();
     }
 
     // Return the user, ensuring the correct type is returned
