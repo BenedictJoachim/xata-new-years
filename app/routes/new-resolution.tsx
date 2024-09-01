@@ -12,18 +12,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       });
     const formData = await request.formData();
   
-    // Handle user creation
-    /*const userEmail = formData.get('email');
-    const userPassword = formData.get('password');
-  
-    const userResult = await sql`
-      INSERT INTO users (email, password)
-      VALUES (${userEmail}, ${userPassword})
-      RETURNING id
-    `;
-  
-    const userId = (userResult as any).rows[0].id;*/
-  
     // Handle resolution creation
     const resolutionText = formData.get('resolution');
     const year = formData.get('year');
@@ -37,7 +25,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export const loader = async ({request}: LoaderFunctionArgs)=>{
-    return {year:2024};
+    let loggedInUser = await authenticator.isAuthenticated(request, {
+        failureRedirect: "/login",
+      });
+    return {loggedInUser, year:2024};
 }
 
 const NewResolution = () => {
@@ -45,40 +36,10 @@ const NewResolution = () => {
     const {year} : LoaderData = useLoaderData()
 
     return (
-        <div className="flex flex-col space-y-8">
-            <div>
-                {/* User Registration Form */}
-                <Form 
-                    method="post"
-                    className="grid grid-flow-col justify-start items-center text-gray-500"
-                >
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        required 
-                        className="border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
-                     />
-
-                    <label htmlFor="password">Password:</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        required 
-                        className="border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
-                     />
-
-                    <button 
-                        type="submit"
-                        name='action'
-                        value='createUser'
-                        className="bg-blue-500 text-white py-1 px-3 rounded-md font-semibold"
-                    >
-                        Create User
-                    </button>
-                </Form>
+        <div className="flex flex-col space-y-8 items-center justify-center mt-8 border border-gray-700 rounded-md bg-gray-800 p-10 max-w-xl mx-auto">
+            <div className='flex flex-col items-center'>
+                <h1>Your New Adventure Begins</h1>
+                <p>What's the most exciting thing you can imagine doing this year?</p>
             </div>
             <div>
                 <Form

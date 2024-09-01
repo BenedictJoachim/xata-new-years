@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, json } from "@remix-run/node";
+import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node";
 import { Form, Link } from "@remix-run/react";
 import bcrypt from 'bcryptjs';
 import { sql } from "lib/neon.server";
