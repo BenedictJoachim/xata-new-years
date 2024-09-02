@@ -2,6 +2,7 @@ import { ActionFunctionArgs } from "@remix-run/node";
 import { useLoaderData, json, Link, Form } from "@remix-run/react";
 import { sql } from "lib/neon.server";
 import { authenticator } from "utils/auth.server";
+import Drawer from "~/components/Drawer";
 import Resolution from "~/components/Resolution";
 
 
@@ -134,9 +135,7 @@ const ResolutionsPage = () => {
               <h1 className="text-3xl font-bold">
                 New Year's Resolutions
               </h1>
-              <Link to="/users">
-                users
-              </Link>
+              
               <Link className="inline-block bg-gray-700 rounded-[100%] p-4 items-center justify-center" to="/new-resolution">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="white">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -144,8 +143,9 @@ const ResolutionsPage = () => {
               </Link>
       </div>
       <div className="grid grid-flow-row gap-y-10">
+        {loggedInUser.email === 'ben@qwert.com' && ( <Drawer />
+        )}
                 {/* <NewResolution /> */}
-
                 <div className="flex flex-col space-y-8">
                     {resolutions.length === 0 ? (
                         <p className="text-gray-500 italic">{`You made no resolutions`}</p>
