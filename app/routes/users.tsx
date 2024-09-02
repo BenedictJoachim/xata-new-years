@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { sql } from "lib/neon.server";
 
 export async function loader(){
@@ -16,6 +16,11 @@ const Users = () => {
                     <li key={u.id}>EMAIL: {u.email}</li>
                 ))}
             </ul>
+            <div className="absolute bottom-2 right-2 bg-white border-2 border-black py-1 px-3 rounded-md font-semibold">
+                <Link to="/resolutions" className="tetx-black">
+                    Resolutions
+                </Link>
+            </div>
         </div>
     )
 }

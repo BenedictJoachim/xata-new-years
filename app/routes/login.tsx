@@ -43,7 +43,6 @@ const LoginPage = () => {
                 name="password"
                 id="password"
             />
-
             <button
                 type="submit"
                 className="bg-blue-500 text-white py-1 px-3 rounded-md font-semibold"
