@@ -143,8 +143,6 @@ const ResolutionsPage = () => {
               </Link>
       </div>
       <div className="grid grid-flow-row gap-y-10">
-        {loggedInUser.email === 'ben@qwert.com' && ( <Drawer />
-        )}
                 {/* <NewResolution /> */}
                 <div className="flex flex-col space-y-8">
                     {resolutions.length === 0 ? (
