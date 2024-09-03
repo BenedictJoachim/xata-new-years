@@ -153,7 +153,7 @@ const ResolutionsPage = () => {
                     )}
                 </div>
         </div>
-        <div>
+        {/* <div>
         {loggedInUser ? (
                     <Form method="post">
                         <button
@@ -166,7 +166,7 @@ const ResolutionsPage = () => {
                         </button>
                     </Form>
                 ) : null}
-        </div>
+        </div> */}
     </div>
     )
 };

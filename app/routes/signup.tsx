@@ -47,7 +47,7 @@ export const action = async({request}: ActionFunctionArgs) => {
 
 const SignUpPage = () => {
     return(
-        <Form method="post" className="p-10 text-center">
+        <Form method="post" className="p-10 text-center border-[1px] border-purple-700 rounded-md w-full mx-auto max-w-xl">
             <h1 className="font-bold text-xl">
                 Welcome! Sign up to create resolutions.
             </h1>
@@ -59,32 +59,44 @@ const SignUpPage = () => {
                 </Link>
             </p>
 
-            <label className="font-semibold mr-2" htmlFor="email">
-                Email
-            </label>
-            <input
-                className="border-2 rounded-md mr-8 border-gray-600 px-3 py-1 text-gray-800"
-                type="email"
-                name="email"
-                id="email"
-            />
-
-            <label className="font-semibold mr-2" htmlFor="password">
-                Password
-            </label>
-            <input
-                className="border-2 rounded-md mr-8 border-gray-600 px-3 py-1 text-gray-800"
-                type="password"
-                name="password"
-                id="password"
-            />
-
-            <button
-                type="submit"
-                className="bg-blue-500 text-white py-1 px-3 rounded-md font-semibold"
-            >
-                Signup
-            </button>
+            <div className="space-y-4">
+                <div className="flex items-center">
+                    <div className="w-1/3">
+                        <label className="font-semibold mr-2" htmlFor="email">
+                            Email
+                        </label>
+                    </div>
+                    <div className="w-2/3">
+                        <input
+                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                            type="email"
+                            name="email"
+                            id="email"
+                        />
+                    </div>
+                </div>
+                <div className="flex items-center">
+                    <div className="w-1/3">
+                        <label className="font-semibold mr-2" htmlFor="password">
+                            Password
+                        </label>
+                    </div>
+                    <div className="w-2/3">
+                        <input
+                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                            type="password"
+                            name="password"
+                            id="password"
+                        />
+                    </div>
+                </div>
+                <button
+                    type="submit"
+                    className="w-full shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-3 rounded"
+                >
+                    Signup
+                </button>
+            </div>
         </Form>
     )
 };
